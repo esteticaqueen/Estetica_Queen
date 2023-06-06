@@ -1,11 +1,24 @@
 import React from "react";
-import "./LandingPage.css";
+import "../assets/css/LandingPage.css";
 import imgWomanHome from "../assets/img-home.jpg";
+
+/*MENU SHOW */
+const showMenu = (toggleId, navId) => {
+  const toggle = document.getElementById(toggleId),
+    nav = document.getElementById(navId);
+
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("show");
+    });
+  }
+};
+showMenu("nav-toggle", "nav-menu");
 
 const LandingPage = () => {
   return (
     <div>
-      <header className="1-header">
+      <header className="l-header">
         <nav className="nav bd-grid">
           <div className="nav__toggle" id="nav-toggle">
             {/*Ionicons*/}
