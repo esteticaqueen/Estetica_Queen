@@ -1,72 +1,95 @@
-import React, { useEffect } from "react";
-import { gsap } from "gsap";
+import React, { useEffect, useRef } from "react";
+import { gsap, Expo } from "gsap";
 import "../assets/css/style.css";
 import imgWomanHome from "../assets/img/img-home.jpg";
 
-const showMenu = (toggleId, navId) => {
-  const toggle = document.getElementById(toggleId),
-    nav = document.getElementById(navId);
+
+
+
+
+const LandingPage = () => {
+
+  const showMenu = (toggleId, navId) => {
+    const toggle = document.getElementById(toggleId),
+      nav = document.getElementById(navId);
+  
+    if (toggle && nav) {
+      toggle.addEventListener("click", () => {
+        nav.classList.toggle("show");
+      });
+    }
+  };
+  showMenu("nav-toggle", "nav-menu");
+  
+const toggleRef = useRef(null);
+const navRef = useRef(null);
+
+useEffect(() => {
+  const toggle = toggleRef.current;
+  const nav = navRef.current;
 
   if (toggle && nav) {
     toggle.addEventListener("click", () => {
       nav.classList.toggle("show");
     });
   }
-};
+}, []);
+  
 
-showMenu("nav-toggle", "nav-menu");
+//   return (
+//     <div>
+//       {/* Resto del contenido de tu componente */}
+//       <button ref={toggleRef}>Toggle</button>
+//       <nav ref={navRef}>
+//         {/* Contenido del menú */}
+//       </nav>
+//     </div>
+//   );
+// };
 
-// const LandingPage = () => {
-//   useEffect(() => {
-//     const Home__img_img = document.querySelector(".home__img img");
-//     const Home__title = document.querySelector(".home__title");
-//     const Home__primary = document.querySelector(".home__primary");
-//       // 2,
-//       //  {
-//       //   width: "100%",
-//       //   ease: Expo.easeInOut,
-//       // });
-//       gsap.from(Home__primary, {
-//          duration:2,
-//          width: "100%",
-//          ease: Expo.easeInOut, });
-//     gsap.from(Home__title, { opacity: 0, duration: 2, delay: 1.5, y: 100 });
-//     gsap.from(Home__img_img, {
-//       opacity: 0,
-//       duration: 2,
-//       delay: 1.5,
-//       y: -100,
-//     }, []);
 
-//     /*HOME SECONDARY*/
-//     const Home__year = document.querySelector(".home__year")
-//     const Home__scroll = document.querySelector(".home__scroll")
-//     const Home__seconday = document.querySelector(".home__secondary")
-//     //  {
-//     //   width: "100%",
-//     //   ease: Expo.easeInOut,
-//     // });
-//     gsap.from(Home__seconday, {  duration: 2.5 , width: "100%",
-//     ease: Expo.easeInOut, });
-//     gsap.from(Home__scroll, { opacity: 0, duration: 3, x: -100 });
-//     gsap.from(Home__year, {
-//       opacity: -1,
-//       duration: 1.5,
-//       delay: 1.5,
-//       x: 100,
-//     });
-//   }, []);
-
-const LandingPage = () => {
+  /*GSAP */
   useEffect(() => {
     const Homeimg_img = document.querySelector(".home__img img");
     const Hometitle = document.querySelector(".home__title");
-    const Homeprimary = document.querySelector(".home__primary");
 
-    gsap.from(Homeprimary, {
-      width: "100%",
-      ease: Expo.easeInOut,
-    });
+    const Homeyear = document.querySelector(".home__year");
+    const Homescroll = document.querySelector(".home__scroll");
+    const Homeprimary = document.querySelector(".home__primary");
+    const Homesecondary = document.querySelector(".home__secondary");
+    const delay = 0.0;
+
+    setTimeout(() => {
+      gsap.from(Homeprimary, {
+        // duration:0,
+        // overwrite:"none",
+
+        onComplete: () => {
+          gsap.to(Homeprimary, {
+            width: "100%",
+            ease: Expo.easeInOut,
+            delay: 0.4,
+            duration: 0.7,
+            transition: 0.4,
+          });
+        },
+      });
+
+      gsap.from(Homesecondary, {
+        // duration:0,
+        // overwrite: "none",
+
+        onComplete: () => {
+          gsap.to(Homesecondary, {
+            width: "100%",
+            ease: Expo.easeInOut,
+            delay: 0.5,
+            duration: 0.6,
+            transition: 0.6,
+          });
+        },
+      });
+    }, delay * 1000);
 
     gsap.from(Hometitle, {
       opacity: 0,
@@ -82,17 +105,6 @@ const LandingPage = () => {
       y: -100,
     });
 
-    const Homeyear = document.querySelector(".home__year");
-    const Homescroll = document.querySelector(".home__scroll");
-    const Homesecondary = document.querySelector(".home__secondary");
-    var tt = miAnimación.TiempoTotal();
-    miAnimación.TiempoTotal(2);
-    gsap.from(Homesecondary, {
-      tt: tt,
-      width: "100%",
-      ease: Expo.easeInOut,
-    });
-
     gsap.from(Homescroll, {
       opacity: 0,
       duration: 3,
@@ -105,15 +117,19 @@ const LandingPage = () => {
       delay: 1.5,
       x: 100,
     });
-  }, []);
+  });
 
   return (
+  
+
     <div>
       <header className="l-header">
         <nav className="nav bd-grid">
           <div className="nav__toggle" id="nav-toggle">
             {/*Ionicons*/}
-            <ion-icon name="reorder-two-outline"></ion-icon>
+            {/* <ion-icon name="reorder-two-outline"></ion-icon> */}
+            <i ref={toggleRef} className="bi bi-distribute-vertical"></i>
+          
           </div>
           <div>
             <a href="" className="nav__logo">
@@ -121,10 +137,12 @@ const LandingPage = () => {
             </a>
           </div>
 
+          <div >  
+         
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
-                <a href="" className="nav__link">
+                <a ref={navRef} className="nav__link">
                   {" "}
                   Home
                 </a>{" "}
@@ -148,11 +166,9 @@ const LandingPage = () => {
               </li>
             </ul>
           </div>
-
-          <div className="nav__icon-cart">
-            {/* Ionicon*/}
-            <ion-icon name="cart-outline"></ion-icon>
           </div>
+          
+      
         </nav>
       </header>
 
@@ -180,5 +196,6 @@ const LandingPage = () => {
     </div>
   );
 };
+
 
 export default LandingPage;
