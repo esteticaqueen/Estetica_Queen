@@ -1,8 +1,8 @@
-import React from "react";
-import "../assets/css/LandingPage.css";
-import imgWomanHome from "../assets/img-home.jpg";
+import React, { useEffect } from "react";
+import { gsap } from "gsap";
+import "../assets/css/style.css";
+import imgWomanHome from "../assets/img/img-home.jpg";
 
-/*MENU SHOW */
 const showMenu = (toggleId, navId) => {
   const toggle = document.getElementById(toggleId),
     nav = document.getElementById(navId);
@@ -13,9 +13,100 @@ const showMenu = (toggleId, navId) => {
     });
   }
 };
+
 showMenu("nav-toggle", "nav-menu");
 
+// const LandingPage = () => {
+//   useEffect(() => {
+//     const Home__img_img = document.querySelector(".home__img img");
+//     const Home__title = document.querySelector(".home__title");
+//     const Home__primary = document.querySelector(".home__primary");
+//       // 2,
+//       //  {
+//       //   width: "100%",
+//       //   ease: Expo.easeInOut,
+//       // });
+//       gsap.from(Home__primary, {
+//          duration:2,
+//          width: "100%",
+//          ease: Expo.easeInOut, });
+//     gsap.from(Home__title, { opacity: 0, duration: 2, delay: 1.5, y: 100 });
+//     gsap.from(Home__img_img, {
+//       opacity: 0,
+//       duration: 2,
+//       delay: 1.5,
+//       y: -100,
+//     }, []);
+
+//     /*HOME SECONDARY*/
+//     const Home__year = document.querySelector(".home__year")
+//     const Home__scroll = document.querySelector(".home__scroll")
+//     const Home__seconday = document.querySelector(".home__secondary")
+//     //  {
+//     //   width: "100%",
+//     //   ease: Expo.easeInOut,
+//     // });
+//     gsap.from(Home__seconday, {  duration: 2.5 , width: "100%",
+//     ease: Expo.easeInOut, });
+//     gsap.from(Home__scroll, { opacity: 0, duration: 3, x: -100 });
+//     gsap.from(Home__year, {
+//       opacity: -1,
+//       duration: 1.5,
+//       delay: 1.5,
+//       x: 100,
+//     });
+//   }, []);
+
 const LandingPage = () => {
+  useEffect(() => {
+    const Homeimg_img = document.querySelector(".home__img img");
+    const Hometitle = document.querySelector(".home__title");
+    const Homeprimary = document.querySelector(".home__primary");
+
+    gsap.from(Homeprimary, {
+      width: "100%",
+      ease: Expo.easeInOut,
+    });
+
+    gsap.from(Hometitle, {
+      opacity: 0,
+      duration: 2,
+      delay: 1.5,
+      y: 100,
+    });
+
+    gsap.from(Homeimg_img, {
+      opacity: 0,
+      duration: 2,
+      delay: 1.5,
+      y: -100,
+    });
+
+    const Homeyear = document.querySelector(".home__year");
+    const Homescroll = document.querySelector(".home__scroll");
+    const Homesecondary = document.querySelector(".home__secondary");
+    var tt = miAnimación.TiempoTotal();
+    miAnimación.TiempoTotal(2);
+    gsap.from(Homesecondary, {
+      tt: tt,
+      width: "100%",
+      ease: Expo.easeInOut,
+    });
+
+    gsap.from(Homescroll, {
+      opacity: 0,
+      duration: 3,
+      x: -100,
+    });
+
+    gsap.from(Homeyear, {
+      opacity: 0,
+      duration: 1.5,
+      delay: 1.5,
+      x: 100,
+    });
+  }, []);
+
   return (
     <div>
       <header className="l-header">
@@ -33,16 +124,27 @@ const LandingPage = () => {
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
-                <a href="" className="nav__link"></a>{" "}
+                <a href="" className="nav__link">
+                  {" "}
+                  Home
+                </a>{" "}
               </li>
               <li className="nav__item">
-                <a href="" className="nav__link"></a>{" "}
+                <a href="" className="nav__link">
+                  {" "}
+                  Woman
+                </a>{" "}
               </li>
               <li className="nav__item">
-                <a href="" className="nav__link"></a>{" "}
+                <a href="" className="nav__link">
+                  {" "}
+                  Man
+                </a>{" "}
               </li>
               <li className="nav__item">
-                <a href="" className="nav__link"></a>{" "}
+                <a href="" className="nav__link">
+                  Explore
+                </a>{" "}
               </li>
             </ul>
           </div>
